@@ -5,8 +5,50 @@ driver:
   name: docker
 docker:
   containers:
-    - name: ansible-role-java
+    - name: centos7
+      image: geerlingguy/docker-centos7-ansible
+      image_version: latest
+      privileged: True
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+    - name: centos6
+      image: geerlingguy/docker-centos6-ansible
+      image_version: latest
+      privileged: True
+      command: '/sbin/init'
+
+    - name: fedora24
+      image: geerlingguy/docker-fedora24-ansible
+      image_version: latest
+      privileged: True
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+    - name: ubuntu1604
       image: geerlingguy/docker-ubuntu1604-ansible
+      image_version: latest
+      privileged: True
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+    - name: ubuntu1404
+      image: geerlingguy/docker-ubuntu1404-ansible
+      image_version: latest
+      privileged: True
+      command: '/sbin/init'
+
+    - name: ubuntu1204
+      image: geerlingguy/docker-ubuntu1204-ansible
+      image_version: latest
+      privileged: True
+      command: '/sbin/init'
+
+    - name: debian8
+      image: geerlingguy/docker-debian8-ansible
       image_version: latest
       privileged: True
       volume_mounts:
